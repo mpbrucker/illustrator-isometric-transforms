@@ -15,29 +15,32 @@ shearLeft.mValueC = -0.5774;
 function isoTransform(mode) {
     var curDoc = activeDocument;
     var selectedObjs = app.activeDocument.selection;
+    alert(selectedObjs);
     var i = 0;
     for (i=0; i < selectedObjs.length; i++) {
         curObj = selectedObjs[i];
         curObj.resize(100,86.062);
         switch(mode) {
             case 0: 
+                alert(selectedObjs[0].position)
+                alert(Transformation.TOPLEFT)
                 // Right panel
-                curObj.transform(shearRight, true, false, false, false, 1);
-                curObj.rotate(30);
+                curObj.transform(shearRight, true, false, false, false, 1, Transformation.DOCUMENTORIGIN);
+                // curObj.rotate(30);
             break;
             case 1:
                 // Left panel
-                curObj.transform(shearLeft, true, false, false, false, 1);
+                curObj.transform(shearLeft, true, false, false, false, 1, Transformation.DOCUMENTORIGIN);
                 curObj.rotate(-30);
             break;
             case 2:
                 // Top panel, rotate right
-                curObj.transform(shearRight, true, false, false, false, 1);
+                curObj.transform(shearRight, true, false, false, false, 1, Transformation.DOCUMENTORIGIN);
                 curObj.rotate(-30);
             break;
             case 3:
                 // Top panel, rotate left
-                curObj.transform(shearLeft, true, false, false, false, 1);
+                curObj.transform(shearLeft, true, false, false, false, 1, Transformation.DOCUMENTORIGIN);
                 curObj.rotate(30);
             break;
         }
