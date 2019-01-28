@@ -1,5 +1,3 @@
-// #target Illustrator;
-// #targetengine main;
 const folderName = (new File($.fileName)).parent.toString();
 var iconRight = File(folderName + '/assets/icon1.png');
 var iconLeft = File(folderName + '/assets/icon2.png');
@@ -24,22 +22,22 @@ function isoTransform(mode) {
         switch(mode) {
             case 0: 
                 // Right panel
-                curObj.transform(shearRight);
+                curObj.transform(shearRight, true, false, false, false, 1);
                 curObj.rotate(30);
             break;
             case 1:
                 // Left panel
-                curObj.transform(shearLeft);
+                curObj.transform(shearLeft, true, false, false, false, 1);
                 curObj.rotate(-30);
             break;
             case 2:
                 // Top panel, rotate right
-                curObj.transform(shearRight);
+                curObj.transform(shearRight, true, false, false, false, 1);
                 curObj.rotate(-30);
             break;
             case 3:
                 // Top panel, rotate left
-                curObj.transform(shearLeft);
+                curObj.transform(shearLeft, true, false, false, false, 1);
                 curObj.rotate(30);
             break;
         }
