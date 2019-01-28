@@ -1,7 +1,10 @@
 // #target Illustrator;
 // #targetengine main;
 const folderName = (new File($.fileName)).parent.toString();
-var iconFile = File(folderName + '/assets/test.png');
+var iconRight = File(folderName + '/assets/icon1.png');
+var iconLeft = File(folderName + '/assets/icon2.png');
+var iconTopLeft = File(folderName + '/assets/icon3.png');
+var iconTopRight = File(folderName + '/assets/icon4.png');
 
 
 var shearRight = app.getIdentityMatrix();
@@ -12,13 +15,9 @@ shearLeft.mValueC = -0.5774;
 
 
 function isoTransform(mode) {
-    alert(app.activeDocument);
     var curDoc = activeDocument;
     var selectedObjs = app.activeDocument.selection;
     var i = 0;
-    alert('test');
-    alert(selectedObjs);
-    // alert('test');
     for (i=0; i < selectedObjs.length; i++) {
         curObj = selectedObjs[i];
         curObj.resize(100,86.062);
@@ -45,16 +44,19 @@ function isoTransform(mode) {
             break;
         }
     }
-    // // TODO make panel floating
-    // dlg.close();
+    dlg.close();
 };
 
 
-var dlg = new Window( "palette", "Isometric Transform" );
+var dlg = new Window( "dialog", "Isometric Transform" );
 dlg.center();
 dlg.group = dlg.add('group', undefined, 'Isometric tools');
-dlg.group.testBtn = dlg.group.add('iconbutton', undefined, iconFile);
-dlg.group.testBtn.onClick = function () { isoTransform(0)};
+
+dlg.group.rightBtn = dlg.group.add('iconbutton', undefined, iconRight);
+dlg.group.rightBtn.onClick = function () { isoTransform(0)};
+
+dlg.group.leftBtn = dlg.group.add('iconbutton', undefined, iconLeft);
+dlg.group.leftBtn.onClick = function () { isoTransform(1)};
 
 
 dlg.show();
